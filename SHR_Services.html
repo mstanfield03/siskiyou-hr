@@ -1,0 +1,310 @@
+<header class="site-header">
+<link rel="stylesheet" href="CSS/SHR_Service.css">
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+  rel="stylesheet"/>
+   
+ <!-- NAVIGATION AND HERO -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <!-- LEFT SIDE -->
+    <div class="nav-brand">
+      <!-- LOGO SPACE -->
+      <a href="SHR_Home.html" class="logo-wrap">
+        <img src="Images/Siskiyou_HR_Solutions_White_Background__1_-removebg-preview.png" alt="Siskiyou HR Solutions Logo">
+      </a>
+    </div>
+
+    <!-- CENTER LINKS -->
+    <div class="nav-links">
+      <a href="SHR_Home.html">Home</a>
+      <a href="SHR_Services.html">Solutions</a>
+      <a href="SHR_About.html">About</a>
+    </div>
+
+    <!-- RIGHT BUTTON -->
+    <a href="SHR_Contact.html" class="nav-button">
+      Request a Consultation</a>
+  </nav>
+</header>
+
+<div class="mountain_wrapper">
+    <img src="Images/Siskiyou_white_transparant.png">
+    <h1>Solutions</h1>
+    <h3>Practical HR Guidance Rooted in the Communities We Serve</h3>
+</div>
+
+<!--SERVICES-->
+<section class="services-section">
+  <div class="services-container">
+    <h2>Explore Our Solutions</h2>
+    <div class="service-cards">
+      <button class="service-card" data-service="core">
+        <img class="icon" src="Images/ServiceIcon1.png" alt="Core HR Services Icon">
+        <h3>Core HR Services</h3>
+        <p>Audits, compliance, policies, recruiting, onboarding, and employee relations.</p>
+        <p>↓ Click to Expand</p>
+      </button>
+
+      <button class="service-card" data-service="training">
+        <img class="icon" src="Images/ServiceIcon2.png" alt="Training Icon">
+        <h3>Training & Development</h3>
+        <p>Practical workplace training for managers, teams, and compliance needs.</p>
+        <p>↓ Click to Expand</p>
+      </button>
+
+      <button class="service-card" data-service="strategic">
+       <img class="icon" src="Images/ServiceIcon3.png" alt="Consulting Icon">
+        <h3>Strategic HR Consulting</h3>
+        <p>Workforce planning, culture, compensation, and performance systems.</p>
+        <p>↓ Click to Expand</p>
+      </button>
+
+      <button class="service-card" data-service="retainer">
+       <img class="icon" src="Images/ServiceIcon4.png" alt="Retainer Icon">
+        <h3>Retainer Packages</h3>
+        <p>Ongoing HR support, fractional HR management, and on-call guidance.</p>
+        <p>↓ Click to Expand</p>
+      </button>
+    </div>
+    <div class="service-details" id="serviceDetails">
+      <button class="close-details" id="closeDetails">Close</button>
+      <div id="detailsContent"></div>
+    </div>
+  </div>
+</section>
+
+<!--IDEAL CUSTOMER-->
+<div class="ideal_customer_wrapper">
+  <div class="ideal_customer_statement">
+    <h2>What Makes Us a Good Match</h2>
+    <p>Siskiyou HR Solutions primarily serves small to mid-sized businesses and public agencies that do not have a dedicated Human Resources department but still face complex workforce challenges. Ideal clients typically have between 10 and 100 employees and are located in rural or regional communities where access to experienced HR professionals is limited. These organizations often rely on owners, managers, or office administrators to handle HR responsibilities and need expert guidance to ensure compliance with employment laws, manage employee relations, and implement effective HR policies and procedures.</p>
+    <p>In addition to small businesses, Siskiyou HR Solutions also supports local government agencies, special districts, and nonprofit organizations that require professional HR support on a project or contract basis. These clients often seek assistance with employee investigations, policy development, recruitment processes, and regulatory compliance.</p>
+    <p>Overall, the ideal customer values practical, accessible HR expertise that helps them reduce risk, resolve employee issues, and build stronger workplace practices without the cost of hiring a full-time HR professional.</p>
+    <a href="SHR_About.html"><button class="button1">About our Founder</button></a>
+  </div>
+  <div class="ideal_customer_appointment">
+    <h2>Request a Consultation</h2>
+   <!-- CONTACT FORM -->
+    <form class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name">
+        </div>
+
+        <div class="form-group">
+          <label for="organization">Organization</label>
+          <input type="text" id="organization" name="organization" placeholder="Organization name">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone number">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="service">What kind of support are you looking for?</label>
+        <select id="service" name="service">
+          <option>Core HR Services</option>
+          <option>Training & Development</option>
+          <option>Strategic HR Consulting</option>
+          <option>Retainer Support</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Tell us a little about your needs</label>
+        <textarea id="message" name="message" rows="6" placeholder="Briefly describe your HR needs or workplace goals."></textarea>
+      </div>
+
+      <button type="submit" class="button1">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<!--FOOTER-->
+<footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo-wrap" aria-label="Siskiyou HR Solutions Home">
+            <img src="Images/Siskiyou_HR_Solutions_White_Background__1_-removebg-preview.png" alt="Siskiyou HR Solutions Logo">
+          </a>
+
+          <p>
+            Practical HR guidance for organizations that need experienced support without the cost of a full-time HR hire.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="/about">Solutions</a>
+          <a href="/locations">About</a>
+          <a href="/events">Contact</a>
+        </div>
+
+        <a href="/card" class="footer-button">Request a Consultation</a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Siskiyou HR Solutions</span>
+        <span>Design by Stanfield Studio</span>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+const serviceData = {
+
+    core: `
+
+      <h3>Core HR Services</h3>
+    <ul>
+     <li> <h4>HR Audits & Compliance Reviews</h4>
+
+      <p>We help organizations identify potential risks before they become costly problems. Audits may include handbooks, workplace policies, I-9 procedures, OSHA considerations, wage and hour practices, and documentation standards.</p></li>
+
+      <li><h4>Employee Relations Support</h4>
+
+      <p>We provide guidance for managers and leadership teams navigating employee concerns, investigations, corrective action, performance conversations, and conflict resolution.</p></li>
+
+      <li><h4>Policy & Employee Handbook Development</h4>
+
+      <p>Clear policies create consistency, accountability, and a stronger employee experience. We develop and update handbooks and policies tailored to your organization’s operations and compliance needs.</p></li>
+
+      <li><h4>Recruiting & Talent Acquisition</h4>
+
+      <p>We support job descriptions, posting management, applicant screening, interviewing practices, and hiring workflows to help organizations attract and select qualified candidates.</p></li>
+
+      <li><h4>Onboarding & Offboarding Programs</h4>
+
+      <p>Structured onboarding improves engagement and retention, while thoughtful offboarding helps protect organizational knowledge, professionalism, and continuity.</p></li>
+
+    `,
+
+    training: `
+
+      <h3>Training & Development</h3>
+
+      <h4>Supervisory Skills Training</h4>
+
+      <p>We help managers strengthen communication, accountability, delegation, coaching, and employee management skills so they can lead with greater confidence.</p>
+
+      <h4>Harassment Prevention Training</h4>
+
+      <p>We provide harassment prevention training designed to support respectful workplaces and help organizations meet applicable compliance requirements, including CA AB 1825/1343 standards.</p>
+
+      <h4>Conflict Management Workshops</h4>
+
+      <p>These workshops help employees and managers improve communication, navigate difficult conversations, and resolve disagreements constructively before they escalate.</p>
+
+      <h4>Communication & Teamwork Training</h4>
+
+      <p>We provide training focused on collaboration, communication styles, accountability, and teamwork strategies that strengthen workplace relationships.</p>
+
+    `,
+
+    strategic: `
+
+      <h3>Strategic HR Consulting</h3>
+
+      <h4>Workforce Planning</h4>
+
+      <p>We help clients evaluate workforce needs, identify staffing gaps, improve role alignment, and plan strategically for growth, succession, and operational stability.</p>
+
+      <h4>Culture Building Initiatives</h4>
+
+      <p>We partner with leadership teams to strengthen workplace culture through improved communication, leadership alignment, employee engagement, and values-based initiatives.</p>
+
+      <h4>Compensation Benchmarking</h4>
+
+      <p>We help organizations compare market benchmarks and create compensation strategies that support retention, fairness, and operational goals.</p>
+
+      <h4>Performance Management Systems</h4>
+
+      <p>We assist with performance systems that support employee growth, improve communication, and give managers practical tools for coaching, evaluations, and feedback.</p>
+
+    `,
+
+    retainer: `
+
+      <h3>Optional Retainer Packages</h3>
+
+      <h4>Monthly HR Support Hours</h4>
+
+      <p>Monthly support packages provide reliable access to experienced HR guidance for consultations, policy questions, employee issues, compliance support, and ongoing needs.</p>
+
+      <h4>Fractional HR Manager Services</h4>
+
+      <p>Fractional HR support gives organizations access to senior-level HR leadership on a flexible basis without the expense of a full-time HR manager.</p>
+
+      <h4>On-Call HR Hotline for Small Businesses</h4>
+
+      <p>Our on-call HR hotline provides timely support for employee concerns, workplace questions, policy interpretation, and management guidance when issues arise.</p>
+
+    `
+
+  };
+
+  const cards = document.querySelectorAll(".service-card");
+
+  const details = document.getElementById("serviceDetails");
+
+  const detailsContent = document.getElementById("detailsContent");
+
+  const closeDetails = document.getElementById("closeDetails");
+
+  cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      const selectedService = card.dataset.service;
+
+      cards.forEach(item => item.classList.remove("active"));
+
+      card.classList.add("active");
+
+      detailsContent.innerHTML = serviceData[selectedService];
+
+      details.classList.add("open");
+
+      details.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "nearest"
+
+      });
+
+    });
+
+  });
+
+  closeDetails.addEventListener("click", () => {
+
+    details.classList.remove("open");
+
+    detailsContent.innerHTML = "";
+
+    cards.forEach(card => card.classList.remove("active"));
+
+  });
+
+</script>
