@@ -1,0 +1,841 @@
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+:root {
+  --accent: #7A8F7B;
+  --black: #000000;
+  --white: #ffffff;
+  --text: #1f1f1f;
+  --muted-text: #555555;
+  --soft-bg: #f8faf8;
+  --border-soft: rgba(122, 143, 123, 0.18);
+
+  --radius-md: 20px;
+  --radius-lg: 28px;
+
+  --shadow-soft:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 10px 28px rgba(0,0,0,0.06),
+    0 20px 60px rgba(0,0,0,0.04);
+
+  --shadow-hover:
+    0 4px 12px rgba(0,0,0,0.05),
+    0 16px 40px rgba(0,0,0,0.08),
+    0 28px 70px rgba(0,0,0,0.06);
+}
+
+
+/* =========================================================
+   BASE / RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--text);
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a {
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 5.25rem);
+  color: var(--black);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+h4 {
+  font-size: 1.05rem;
+}
+
+p,
+li {
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.button1,
+.nav-button,
+.footer-button,
+.close-details {
+  display: inline-block;
+  padding: 0.7rem 1.1rem;
+
+  background: var(--accent);
+  color: var(--white);
+
+  border: none;
+  border-radius: 999px;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.button1 {
+  margin-top: 15px;
+}
+
+.button1:hover,
+.button1:focus,
+.nav-button:hover,
+.nav-button:focus,
+.footer-button:hover,
+.footer-button:focus,
+.close-details:hover {
+  background: var(--black);
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   HEADER / NAVIGATION
+========================================================= */
+
+.site-header {
+  padding: 1rem;
+  background: var(--white);
+}
+
+.nav-bar {
+  margin: 0 auto;
+  padding: 0.85rem 1.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  background: var(--white);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: max-content;
+}
+
+.logo-wrap {
+  width: clamp(220px, 28vw, 400px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logo-wrap img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* =========================================================
+   HERO / MOUNTAIN BANNER
+========================================================= */
+
+.mountain_wrapper {
+  width: calc(100% - 2rem);
+  min-height: 600px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  border-radius: var(--radius-md);
+
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("/Images/MtShasta.jpg");
+
+  background-size: cover;
+}
+
+.mountain_wrapper img {
+  width: min(320px, 80%);
+  margin-bottom: 1rem;
+}
+
+.mountain_wrapper h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(3rem, 9vw, 5.25rem);
+  text-align: center;
+}
+
+.mountain_wrapper h3 {
+  margin-top: 0.75rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+.services-section {
+  padding: 90px 24px;
+}
+
+.services-container {
+  margin: 0 auto;
+}
+
+.services-container h2 {
+  text-align: center;
+}
+
+.section-label {
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-intro {
+  color: var(--black);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.service-card {
+  min-height: 250px;
+  padding: 26px;
+
+  text-align: left;
+  color: var(--black);
+  cursor: pointer;
+
+  border-radius: 26px;
+  border: 1px solid rgba(122,143,123,0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.95),
+      rgba(248,250,248,0.95)
+    );
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.service-card:hover,
+.service-card.active {
+  transform: translateY(-6px);
+  border-color: rgba(122,143,123,0.75);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(122,143,123,0.16),
+      rgba(255,255,255,0.95)
+    );
+
+  box-shadow: var(--shadow-hover);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.service-card p {
+  color: var(--black);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   SERVICE DETAILS PANEL
+========================================================= */
+
+.service-details {
+  display: none;
+
+  margin-top: 24px;
+  padding: 34px;
+
+  border-radius: 28px;
+  background: rgba(255,255,255,0.95);
+  color: #111;
+
+  box-shadow: 0 28px 80px rgba(0,0,0,0.25);
+}
+
+.service-details.open {
+  display: block;
+}
+
+.service-details h3 {
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+  color: var(--black);
+}
+
+.service-details h4 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.service-details p {
+  max-width: 900px;
+  color: rgba(0,0,0,0.68);
+  line-height: 1.7;
+}
+
+.close-details {
+  float: right;
+}
+
+
+/* =========================================================
+   IDEAL CUSTOMER / APPOINTMENT CARDS
+========================================================= */
+
+.ideal_customer_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 5vw, 50px);
+  margin: 0 auto;
+  padding: 90px 24px;
+
+  align-items: stretch;
+}
+
+.ideal_customer_statement,
+.ideal_customer_appointment {
+  height: 100%;
+  padding: 26px;
+
+  text-align: left;
+  color: var(--black);
+
+  border-radius: 26px;
+  border: 1px solid rgba(122,143,123,0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.95),
+      rgba(248,250,248,0.95)
+    );
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ideal_customer_statement:hover,
+.ideal_customer_appointment:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ideal_customer_appointment img {
+  width: 300px;
+  max-width: 100%;
+  margin: 0 auto 24px;
+}
+
+.ideal_customer_wrapper p {
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+
+.contact-section {
+  padding: 6rem 8%;
+}
+
+.contact-intro {
+  max-width: 780px;
+  margin-bottom: 3rem;
+}
+
+.contact-intro h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--text);
+}
+
+.contact-intro p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--muted-text);
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.contact-form,
+.contact-card {
+  padding: 2rem;
+
+  border-radius: 28px;
+  border: 1px solid var(--border-soft);
+
+  background: linear-gradient(180deg, var(--white) 0%, var(--soft-bg) 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+
+  border: 1px solid #d9ddd8;
+  border-radius: 14px;
+
+  font: inherit;
+  color: var(--text);
+  background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(122, 143, 123, 0.14);
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-card img {
+  width: 200px;
+  margin-bottom: 1.5rem;
+}
+
+.contact-card h2 {
+  font-size: 2rem;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.contact-card p {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  color: var(--muted-text);
+}
+
+.contact-detail {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(122, 143, 123, 0.2);
+}
+
+.contact-detail strong,
+.contact-detail span {
+  display: block;
+}
+
+.contact-detail strong {
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+
+.contact-detail span {
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   ICONS
+========================================================= */
+
+.icon {
+  width: 75px;
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 30px;
+
+  border-radius: 16px;
+  background: rgba(122, 143, 123, 0.08);
+  border: 1px solid rgba(122, 143, 123, 0.18);
+
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  margin-top: 100px;
+  padding: 2.4rem 1.2rem 1.4rem;
+
+  background: var(--white);
+  color: var(--black);
+  border-top: 1px solid rgba(0,0,0,0.08);
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.footer-container {
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.footer-logo-wrap {
+  width: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.footer-logo-wrap img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-brand p {
+  margin: 0;
+
+  color: rgba(0,0,0,0.68);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-top: 1.2rem;
+
+  color: rgba(0,0,0,0.54);
+  font-size: 0.88rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE: LARGE TABLETS
+========================================================= */
+
+@media (max-width: 1100px) {
+  .service-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE: TABLETS
+========================================================= */
+
+@media (max-width: 900px) {
+  .ideal_customer_wrapper,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE: NAV / MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+  .nav-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .nav-brand {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo-wrap {
+    width: min(320px, 90%);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE: MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .mountain_wrapper {
+    width: calc(100% - 1rem);
+    min-height: 480px;
+    padding: 4rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .services-section,
+  .ideal_customer_wrapper,
+  .contact-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    min-height: auto;
+  }
+
+  .close-details {
+    float: none;
+    margin-bottom: 24px;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-logo-wrap {
+    width: min(280px, 100%);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE: SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 0.75rem;
+  }
+
+  .nav-bar {
+    padding: 0.75rem;
+  }
+
+  .nav-links {
+    gap: 0.85rem;
+  }
+
+  .mountain_wrapper h1 {
+    font-size: 2.75rem;
+  }
+
+  .mountain_wrapper h3 {
+    font-size: 1rem;
+  }
+
+  .button1,
+  .nav-button,
+  .footer-button {
+    width: 100%;
+    text-align: center;
+  }
+}
