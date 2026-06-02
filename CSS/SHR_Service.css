@@ -692,9 +692,9 @@ li {
   font-size: 0.88rem;
 }
 
-
 /* =========================================================
    RESPONSIVE: LARGE TABLETS
+   Reduce 4-column areas into 2 columns
 ========================================================= */
 
 @media (max-width: 1100px) {
@@ -710,6 +710,7 @@ li {
 
 /* =========================================================
    RESPONSIVE: TABLETS
+   Stack major two-column sections
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -718,9 +719,20 @@ li {
     grid-template-columns: 1fr;
   }
 
-  .footer-top {
+  .ideal_customer_statement,
+  .ideal_customer_appointment {
+    height: auto;
+  }
+
+  .contact-card {
     align-items: flex-start;
+  }
+
+  .footer-top,
+  .footer-brand,
+  .footer-bottom {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .footer-links {
@@ -730,24 +742,26 @@ li {
 
 
 /* =========================================================
-   RESPONSIVE: NAV / MOBILE
+   RESPONSIVE: MOBILE NAV
+   Stack nav logo, links, and CTA
 ========================================================= */
 
 @media (max-width: 850px) {
   .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 1.25rem;
   }
 
-  .nav-brand {
+  .nav-brand,
+  .nav-links {
     width: 100%;
     justify-content: center;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0.9rem;
   }
 
   .nav-button {
@@ -763,14 +777,36 @@ li {
 
 /* =========================================================
    RESPONSIVE: MOBILE
+   Stack cards and tighten spacing
 ========================================================= */
 
 @media (max-width: 700px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
   .mountain_wrapper {
     width: calc(100% - 1rem);
-    min-height: 480px;
+    min-height: 460px;
     padding: 4rem 1.25rem;
     border-radius: 16px;
+    background-position: center;
+  }
+
+  .mountain_wrapper img {
+    width: min(240px, 80%);
+  }
+
+  .mountain_wrapper h1 {
+    font-size: 2.75rem;
+  }
+
+  .mountain_wrapper h3 {
+    font-size: 1rem;
   }
 
   .services-section,
@@ -783,32 +819,49 @@ li {
     grid-template-columns: 1fr;
   }
 
+  .service-card,
+  .ideal_customer_statement,
+  .ideal_customer_appointment,
+  .contact-form,
+  .contact-card,
+  .service-details {
+    padding: 1.5rem;
+  }
+
   .service-card {
     min-height: auto;
   }
 
-  .close-details {
-    float: none;
-    margin-bottom: 24px;
+  .service-details {
+    margin-top: 1.5rem;
   }
 
-  .footer-brand {
-    align-items: flex-start;
-    flex-direction: column;
+  .close-details {
+    float: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .contact-intro h1 {
+    font-size: 2.75rem;
+  }
+
+  .contact-card img,
+  .ideal_customer_appointment img {
+    width: min(220px, 80%);
   }
 
   .footer-logo-wrap {
     width: min(280px, 100%);
-  }
-
-  .footer-bottom {
-    flex-direction: column;
   }
 }
 
 
 /* =========================================================
    RESPONSIVE: SMALL MOBILE
+   Full-width buttons and compact spacing
 ========================================================= */
 
 @media (max-width: 480px) {
@@ -824,18 +877,25 @@ li {
     gap: 0.85rem;
   }
 
-  .mountain_wrapper h1 {
-    font-size: 2.75rem;
-  }
-
-  .mountain_wrapper h3 {
-    font-size: 1rem;
-  }
-
   .button1,
   .nav-button,
   .footer-button {
     width: 100%;
     text-align: center;
+  }
+
+  .services-section,
+  .ideal_customer_wrapper,
+  .contact-section {
+    padding: 3rem 1rem;
+  }
+
+  .service-card,
+  .ideal_customer_statement,
+  .ideal_customer_appointment,
+  .contact-form,
+  .contact-card,
+  .service-details {
+    border-radius: 20px;
   }
 }
