@@ -537,12 +537,27 @@ li {
 
 
 /* =========================================================
-   RESPONSIVE: TABLETS
+   RESPONSIVE: TABLETS AND BELOW
+   Stack large content sections
 ========================================================= */
 
 @media (max-width: 1000px) {
-  .why_choose_us_wrapper {
+  .services_offered1,
+  .services_offered2,
+  .why_choose_us_wrapper,
+  .footer-top,
+  .footer-brand,
+  .footer-bottom {
+    display: flex;
     flex-direction: column;
+  }
+
+  .services_offered1,
+  .services_offered2 {
+    gap: 2rem;
+  }
+
+  .why_choose_us_wrapper {
     align-items: stretch;
   }
 
@@ -550,6 +565,12 @@ li {
   .why_choose_us_info1,
   .why_choose_us_info2 {
     width: 100%;
+  }
+
+  .footer-top,
+  .footer-brand,
+  .footer-bottom {
+    align-items: flex-start;
   }
 }
 
@@ -560,19 +581,20 @@ li {
 
 @media (max-width: 850px) {
   .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 1.25rem;
   }
 
-  .nav-brand {
+  .nav-brand,
+  .nav-links {
     width: 100%;
     justify-content: center;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0.9rem;
   }
 
   .nav-button {
@@ -590,37 +612,16 @@ li {
    RESPONSIVE: MOBILE
 ========================================================= */
 
-@media (max-width: 900px) {
-  .services_offered1,
-  .services_offered2 {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    flex-direction: column;
-    text-align: center;
-    min-height: auto;
-  }
-
-  .card-content ul {
-    text-align: left;
-  }
-
-  .card-image {
-    width: 160px;
-  }
-}
-
 @media (max-width: 700px) {
-  .site-header {
-    padding: 0.75rem;
-  }
-
   .shr_hero_wrapper {
     width: calc(100% - 1rem);
     min-height: 480px;
     padding: 5rem 1.25rem;
     border-radius: 16px;
+  }
+
+  .shr_hero_wrapper h1 {
+    font-size: 2.75rem;
   }
 
   .services_grid {
@@ -631,34 +632,19 @@ li {
     margin-top: 2rem;
   }
 
-  .footer-top,
-  .footer-brand,
-  .footer-bottom {
+  .service-card {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    min-height: auto;
+    padding: 1.5rem;
   }
 
-  .footer-links {
-    justify-content: flex-start;
+  .card-content ul {
+    text-align: left;
   }
 
-  .footer-logo-wrap {
-    width: min(280px, 100%);
-  }
-}
-
-
-/* =========================================================
-   RESPONSIVE: SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-  .nav-links {
-    gap: 0.85rem;
-  }
-
-  .shr_hero_wrapper h1 {
-    font-size: 2.75rem;
+  .card-image {
+    width: 140px;
   }
 
   .button1,
@@ -666,9 +652,5 @@ li {
   .footer-button {
     width: 100%;
     text-align: center;
-  }
-
-  .card-image {
-    width: 130px;
   }
 }
