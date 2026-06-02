@@ -506,51 +506,8 @@ li {
 }
 
 /* =========================================================
-   RESPONSIVE: CONTACT
-========================================================= */
-
-@media (max-width: 900px) {
-  .contact-wrapper,
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* =========================================================
-   RESPONSIVE: NAV
-========================================================= */
-
-@media (max-width: 850px) {
-  .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.25rem;
-  }
-
-  .nav-brand {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .logo-wrap {
-    width: min(320px, 90%);
-  }
-}
-
-
-/* =========================================================
    RESPONSIVE: TABLETS
+   Stack About section and footer
 ========================================================= */
 
 @media (max-width: 1000px) {
@@ -564,28 +521,41 @@ li {
     max-width: 620px;
     margin: 0 auto;
   }
+
+  .footer-top,
+  .footer-brand,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
 }
 
 
 /* =========================================================
-   RESPONSIVE: NAV / MEDIUM SCREENS
+   RESPONSIVE: MOBILE NAV
+   Stack logo, links, and CTA
 ========================================================= */
 
 @media (max-width: 850px) {
   .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 1.25rem;
   }
 
-  .nav-brand {
+  .nav-brand,
+  .nav-links {
     width: 100%;
     justify-content: center;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0.9rem;
   }
 
   .nav-button {
@@ -601,13 +571,37 @@ li {
 
 /* =========================================================
    RESPONSIVE: MOBILE
+   Stack cards and tighten spacing
 ========================================================= */
 
 @media (max-width: 700px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2,
+  .about-content h2 {
+    font-size: 2.25rem;
+  }
+
   .mountain_wrapper {
-    min-height: 480px;
+    width: calc(100% - 1rem);
+    min-height: 460px;
     padding: 4rem 1.25rem;
     border-radius: 16px;
+    background-position: center;
+  }
+
+  .mountain_wrapper img {
+    width: min(240px, 80%);
+  }
+
+  .mountain_wrapper h1 {
+    font-size: 2.75rem;
+  }
+
+  .mountain_wrapper h3 {
+    font-size: 1rem;
   }
 
   .about-section {
@@ -621,11 +615,20 @@ li {
   .highlight-card {
     padding: 1.25rem;
   }
+
+  .about-image::before {
+    inset: -12px;
+  }
+
+  .footer-logo-wrap {
+    width: min(280px, 100%);
+  }
 }
 
 
 /* =========================================================
    RESPONSIVE: SMALL MOBILE
+   Full-width buttons and compact spacing
 ========================================================= */
 
 @media (max-width: 480px) {
@@ -641,20 +644,17 @@ li {
     gap: 0.85rem;
   }
 
-  .mountain_wrapper h1 {
-    font-size: 2.75rem;
+  .about-section {
+    padding: 3rem 1rem;
   }
 
-  .mountain_wrapper h3 {
-    font-size: 1rem;
-  }
-
-  .about-content h2 {
-    font-size: 2.25rem;
+  .highlight-card {
+    border-radius: 20px;
   }
 
   .button1,
-  .nav-button {
+  .nav-button,
+  .footer-button {
     width: 100%;
     text-align: center;
   }
