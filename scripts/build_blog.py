@@ -161,7 +161,7 @@ def card(post):
     fmt='video' if post.get('video_url') else 'article'
     label='Watch & read' if fmt=='video' else 'Read article'
     meta=f'{post["display_date"]} · {"Video" if fmt=="video" else "Article"}'
-    return f'''<article class="blog-card" data-format="{fmt}" data-search="{text(search_text(post))}"><a class="blog-card-cover" href="blog/{post['slug']}/" tabindex="-1" aria-hidden="true">{cover(post,'')}</a><div class="blog-card-content"><p class="blog-eyebrow">{text(post['category'])}</p><h3><a href="blog/{post['slug']}/">{text(post['title'])}</a></h3><p class="blog-card-excerpt">{text(post['excerpt'])}</p>{tag_links(post)}<p class="blog-meta">{text(meta)}</p><a class="blog-read-link" href="blog/{post['slug']}/" aria-label="{label}: {text(post['title'])}">{label} <span aria-hidden="true">↗</span></a></div></article>'''
+    return f'''<article class="blog-card" data-format="{fmt}" data-search="{text(search_text(post))}"><a class="blog-card-cover" href="blog/{post['slug']}/" tabindex="-1" aria-hidden="true">{cover(post,'')}</a><div class="blog-card-content"><h3><a href="blog/{post['slug']}/">{text(post['title'])}</a></h3><p class="blog-card-excerpt">{text(post['excerpt'])}</p>{tag_links(post)}<p class="blog-meta">{text(meta)}</p><a class="blog-read-link" href="blog/{post['slug']}/" aria-label="{label}: {text(post['title'])}">{label} <span aria-hidden="true">↗</span></a></div></article>'''
 
 DEFAULT_SITE = {
     'site_url': 'https://www.siskiyouhr.com',
@@ -315,7 +315,7 @@ def build(output, demo=False):
     featured=''
     if selected:
         fmt='Video' if selected.get('video_url') else 'Article'
-        featured=f'''<section class="blog-featured" aria-labelledby="featured-heading"><a class="blog-featured-cover" href="blog/{selected['slug']}/" tabindex="-1" aria-hidden="true">{cover(selected,'',True)}</a><div class="blog-featured-content"><p class="blog-eyebrow">FEATURED PERSPECTIVE · {fmt.upper()}</p><h2 id="featured-heading"><a href="blog/{selected['slug']}/">{text(selected['title'])}</a></h2><p>{text(selected['excerpt'])}</p><p class="blog-meta">{text(selected['display_date'])} · {text(selected['author'])}</p><a class="blog-read-link" href="blog/{selected['slug']}/">Explore this post <span aria-hidden="true">↗</span></a></div></section>'''
+        featured=f'''<section class="blog-featured" aria-labelledby="featured-heading"><a class="blog-featured-cover" href="blog/{selected['slug']}/" tabindex="-1" aria-hidden="true">{cover(selected,'',True)}</a><div class="blog-featured-content"><h2 id="featured-heading"><a href="blog/{selected['slug']}/">{text(selected['title'])}</a></h2><p>{text(selected['excerpt'])}</p><p class="blog-meta">{text(selected['display_date'])} · {text(selected['author'])}</p><a class="blog-read-link" href="blog/{selected['slug']}/">Explore this post <span aria-hidden="true">↗</span></a></div></section>'''
     empty='' if posts else '<div class="blog-empty"><h3>Good conversations start here.</h3><p>New articles and videos are on their way. In the meantime, we’d love to hear what’s on your mind.</p><a class="blog-read-link" href="SHR_Contact.html">Talk with us ↗</a></div>'
     listing=render('listing',{'root':'','featured':featured,'cards':''.join(map(card,posts)),'empty':empty})
     title,description,head=metadata(site,'SHR_Blog.html',demo=demo)
