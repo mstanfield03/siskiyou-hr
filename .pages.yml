@@ -5,7 +5,7 @@ media:
   rename: safe
 content:
   - name: posts
-    label: Journal posts
+    label: Blog posts
     type: collection
     path: content/posts
     format: json
@@ -133,12 +133,12 @@ content:
         label: Site name
         type: string
         readonly: true
-      - name: journal_title
-        label: Journal listing search title
+      - name: blog_title
+        label: Blog listing search title
         type: string
         required: true
-      - name: journal_description
-        label: Journal listing search description
+      - name: blog_description
+        label: Blog listing search description
         type: text
         required: true
       - name: social_image

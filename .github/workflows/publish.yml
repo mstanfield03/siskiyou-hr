@@ -1,4 +1,4 @@
-name: Publish website and journal
+name: Publish website and blog
 on:
   push:
     branches: [main]

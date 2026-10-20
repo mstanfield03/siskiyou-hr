@@ -1,7 +1,7 @@
 SISKIYOU HR SOLUTIONS — BLOG + PAGES CMS
 
 What this package provides
-A responsive SHR_Blog.html journal, individual article templates, optional video,
+A responsive SHR_Blog.html blog, individual article templates, optional video,
 a browser-based editor configuration, and a GitHub Pages publishing workflow.
 The header/footer markup and styling come from your supplied About page and its
 live stylesheet. Footer links were corrected to index.html / SHR_About.html so
@@ -33,7 +33,7 @@ ONE-TIME SETUP FOR YOU
 
 2. Add this link to the navigation/footer on your existing pages wherever you
    want visitors to find the blog:
-     <a href="SHR_Blog.html">Journal</a>
+     <a href="SHR_Blog.html">Blog</a>
    The new page keeps the existing header/footer links and does not add an editor
    login to the public site. The manager bookmarks https://app.pagescms.org/.
 
@@ -46,11 +46,11 @@ ONE-TIME SETUP FOR YOU
    Actions as the source. Keep the existing custom domain and DNS settings.
    Keep an existing CNAME file at the root; the builder copies it into dist.
    If GitHub Actions is disabled by repository policy, enable it through the owner.
-   Push the changes, then verify a successful Publish website and journal run.
+   Push the changes, then verify a successful Publish website and blog run.
 
 5. Open https://app.pagescms.org/, sign in with your GitHub account, and install /
    authorize the Pages CMS GitHub App for this repository. Select the repository
-   and the publishing branch. Its .pages.yml file defines the Journal posts form.
+   and the publishing branch. Its .pages.yml file defines the Blog posts form.
    Use Pages CMS collaborator management to invite the marketing manager by email.
    These account/repository connection steps have not been performed for you.
 
@@ -62,7 +62,7 @@ ONE-TIME SETUP FOR YOU
 
 MANAGER'S WORKFLOW
 
-Open Pages CMS > the client repository > Journal posts > create a post.
+Open Pages CMS > the client repository > Blog posts > create a post.
 Enter the title, display date, author, topic and short summary. Add an optional
 cover image and describe it in the image description field. Write the article
 with the rich-text editor, or supply a video link, or use both.
@@ -78,7 +78,7 @@ available; captions should also be provided in the video hosting platform.
 Leave Published off while drafting. Turn Published on and Save to put it live.
 Saving starts the deployment; allow it to finish before checking the website.
 Save later edits to update the article. Turn Published off and Save to remove it
-from the deployed journal. Deleted posts disappear on the next successful build.
+from the deployed blog. Deleted posts disappear on the next successful build.
 The date field is only the displayed/sorting date; it does not schedule publishing.
 Featured places a post in the lead section. If several are featured, newest wins.
 Each post may have one lead video and formatted text with images.
@@ -201,7 +201,7 @@ SEO references
 
 REPOSITORY INTEGRATION
 
-The Journal navigation link is already added to all four existing pages and both
+The Blog navigation link is already added to all four existing pages and both
 blog templates in this integration. Existing footer destinations were corrected
 to the site's actual HTML pages. The build preserves the www.siskiyouhr.com CNAME.
 Pull requests run the build without deploying; only main deploys the site.

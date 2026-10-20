@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the journal and static site. Python 3.11+, no third-party packages."""
+"""Generate the blog and static site. Python 3.11+, no third-party packages."""
 from pathlib import Path, PurePosixPath
 from html import escape
 from html.parser import HTMLParser
@@ -147,8 +147,8 @@ def card(post):
 DEFAULT_SITE = {
     'site_url': 'https://www.siskiyouhr.com',
     'site_name': 'Siskiyou HR Solutions',
-    'journal_title': 'Journal | Siskiyou HR Solutions',
-    'journal_description': 'Articles, videos, and practical workplace perspectives from Siskiyou HR Solutions.',
+    'blog_title': 'Blog | Siskiyou HR Solutions',
+    'blog_description': 'Articles, videos, and practical workplace perspectives from Siskiyou HR Solutions.',
     'social_image': '',
     'social_image_alt': '',
 }
@@ -187,8 +187,8 @@ def seo_fields(post):
 
 def metadata(site,path,post=None,demo=False):
     seo=seo_fields(post) if post else {}
-    title=(seo.get('title') or '').strip() or (post['title']+' | '+site['site_name'] if post else site['journal_title'])
-    description=(seo.get('description') or '').strip() or (post['excerpt'] if post else site['journal_description'])
+    title=(seo.get('title') or '').strip() or (post['title']+' | '+site['site_name'] if post else site['blog_title'])
+    description=(seo.get('description') or '').strip() or (post['excerpt'] if post else site['blog_description'])
     canonical=absolute_url(path,site)
     if seo.get('social_image'):
         image,image_alt=seo['social_image'],seo.get('social_image_alt','')
