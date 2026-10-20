@@ -164,12 +164,43 @@ def load_site():
     if (parsed.scheme!='https' or not parsed.hostname or parsed.query or parsed.fragment or parsed.username or parsed.password
             or re.search(r'[\s\\]',site['site_url']) or '..' in PurePosixPath(unquote(parsed.path)).parts):
         raise ValueError('site_url must be the public HTTPS site URL, optionally with a repository path')
+    extra_meta_tags(site.get('meta_tags'))
     return site
 
 def absolute_url(value,site):
     value=local_url(value,'')
     if not urlparse(value).scheme: value=site['site_url']+'/'+value
     return quote(value,safe=":/?&=%#@+;,")
+
+# Built-in metadata stays controlled by its dedicated CMS fields.
+MANAGED_META = {
+    'description', 'robots', 'googlebot', 'bingbot', 'viewport', 'charset',
+    'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url', 'og:image', 'og:image:alt',
+    'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt',
+    'article:published_time', 'article:modified_time',
+}
+
+def extra_meta_tags(value):
+    if value is None: return []
+    if not isinstance(value,list): raise ValueError('Additional meta tags must be a list of rows')
+    result=[]; seen=set()
+    for index,entry in enumerate(value,1):
+        if not isinstance(entry,dict): raise ValueError(f'Meta tag row {index} must be an object')
+        attribute=entry.get('attribute') or 'name'
+        tag=entry.get('tag') or ''
+        content=entry.get('content') or ''
+        if not isinstance(tag,str) or not isinstance(content,str): raise ValueError(f'Meta tag row {index} must contain text')
+        tag=tag.strip()
+        if not tag and not content.strip(): continue
+        if attribute not in ('name','property'): raise ValueError(f'Meta tag row {index}: choose name or property')
+        if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_.:-]*',tag) or not content.strip():
+            raise ValueError(f'Meta tag row {index}: add a valid tag name and content')
+        if tag.lower() in MANAGED_META:
+            raise ValueError(f'Meta tag {tag} has a dedicated search/social field; use that field instead')
+        fingerprint=(attribute,tag.lower(),content)
+        if fingerprint not in seen:
+            seen.add(fingerprint); result.append((attribute,tag,content))
+    return result
 
 def seo_fields(post):
     value=post.get('seo') or {}
@@ -183,6 +214,7 @@ def seo_fields(post):
     if value.get('video_upload_date'):
         uploaded=datetime.fromisoformat(value['video_upload_date'].replace('Z','+00:00'))
         if uploaded.tzinfo is None: raise ValueError('Video upload date must include a timezone')
+    extra_meta_tags(value.get('meta_tags'))
     return value
 
 def metadata(site,path,post=None,demo=False):
@@ -229,6 +261,7 @@ def metadata(site,path,post=None,demo=False):
         # Escape '<' so editor-entered text cannot close the JSON-LD script element.
         encoded=json.dumps(schema,ensure_ascii=True).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
         head.append('<script type="application/ld+json">'+encoded+'</script>')
+    tags.extend(extra_meta_tags(seo.get('meta_tags') if post else site.get('meta_tags')))
     head.extend(f'<meta {attr}="{key}" content="{text(value)}">' for attr,key,value in tags)
     return title,description,'\n'.join(head)
 

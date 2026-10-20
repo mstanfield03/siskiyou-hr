@@ -1,3 +1,29 @@
+components:
+  extra_meta_tags:
+    type: object
+    list: true
+    fields:
+      - name: attribute
+        label: Attribute
+        type: select
+        default: name
+        required: true
+        options:
+          values: [name, property]
+        description: Use name for standard tags and property for Open Graph tags.
+      - name: tag
+        label: Tag name
+        type: string
+        required: true
+        pattern:
+          regex: "^[A-Za-z][A-Za-z0-9_.:-]*$"
+          message: Use a tag name such as author or og:locale, without HTML brackets.
+        description: Examples include author or og:locale. Existing SEO fields manage description, robots, and standard social tags.
+      - name: content
+        label: Content
+        type: text
+        required: true
+        description: Enter the tag value only; do not paste a complete HTML tag.
 media:
   input: Images/blog
   output: /Images/blog
@@ -106,6 +132,10 @@ content:
             type: boolean
             default: false
             description: The post stays public and listed on the blog, but requests noindex and is omitted from the blog sitemap. This does not make it private.
+          - name: meta_tags
+            component: extra_meta_tags
+            label: Additional meta tags
+            description: Optional tags for this post only. Add one row per tag. Use the existing search and social fields for built-in metadata.
           - name: video_thumbnail
             label: Video thumbnail for search (video posts only)
             type: image
@@ -148,3 +178,7 @@ content:
       - name: social_image_alt
         label: Default sharing image description
         type: string
+      - name: meta_tags
+        component: extra_meta_tags
+        label: Additional meta tags for the blog listing
+        description: Applies to SHR_Blog.html only. Individual posts have their own Additional meta tags field.
