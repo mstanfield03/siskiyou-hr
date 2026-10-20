@@ -16,11 +16,11 @@
 <meta name="twitter:title" content="HR Blog | Siskiyou HR Solutions">
 <meta name="twitter:description" content="Practical HR articles, videos, and workplace perspectives for local organizations from Siskiyou HR Solutions.">
 <link rel="stylesheet" href="CSS/SHR_About.css">
-<link rel="stylesheet" href="CSS/SHR_Blog.css?v=db6b76e43003">
+<link rel="stylesheet" href="CSS/SHR_Blog.css?v=28cf4fdd3c21">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-<script src="JS/SHR_Blog.js?v=544769b78e61" defer></script>
+<script src="JS/SHR_Blog.js?v=63d53a11a4ca" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -58,17 +58,17 @@
 
 <section id="latest" class="blog-latest" aria-labelledby="latest-heading">
 <div class="blog-section-heading"><div><p class="blog-eyebrow">IDEAS YOU CAN PUT TO WORK</p><h2 id="latest-heading">From the blog</h2></div><p>Thoughtful guidance.<br>Stronger teams.</p></div>
-<form class="blog-tools" role="search" onsubmit="return false" hidden>
+<form class="blog-tools" role="search" aria-label="Search the blog" method="get" action="SHR_Blog.html#latest">
 <div class="blog-filters" aria-label="Filter posts by format">
 <button type="button" data-filter="all" aria-pressed="true">All posts</button>
 <button type="button" data-filter="article" aria-pressed="false">Articles</button>
 <button type="button" data-filter="video" aria-pressed="false">Videos</button>
 </div>
-<label class="blog-search"><span class="sr-only">Search posts</span><span aria-hidden="true">⌕</span><input type="search" placeholder="Search the blog…" autocomplete="off"></label>
+<div class="blog-search"><label class="sr-only" for="blog-search">Search posts by keyword</label><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="blog-search" name="q" type="search" placeholder="Search by keyword…" autocomplete="off"><button type="submit">Search</button></div>
 </form>
 <p class="sr-only" id="blog-count" aria-live="polite"></p>
 <div class="blog-grid"></div>
-<p class="blog-no-results" hidden>No posts match your search. Try another word or choose All posts.</p>
+<p class="blog-no-results" hidden>No posts match your search. Try another keyword or choose All posts.</p>
 <div class="blog-empty"><h3>Good conversations start here.</h3><p>New articles and videos are on their way. In the meantime, we’d love to hear what’s on your mind.</p><a class="blog-read-link" href="SHR_Contact.html">Talk with us ↗</a></div>
 </section>
 <section class="blog-cta"><div><p class="blog-eyebrow">LET’S TALK ABOUT YOUR TEAM</p><h2>A little guidance.<br>A meaningful difference.</h2><p>Bring your workplace questions to a local partner who understands.</p></div><a href="SHR_Contact.html" class="nav-button">Request a Consultation <span aria-hidden="true">↗</span></a></section>

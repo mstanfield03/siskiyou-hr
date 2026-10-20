@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the blog and static site. Python 3.11+, no third-party packages."""
 from pathlib import Path, PurePosixPath
-from html import escape
+from html import escape, unescape
 from html.parser import HTMLParser
 from urllib.parse import urlparse, parse_qs, unquote, quote
 from datetime import date, datetime
@@ -138,11 +138,30 @@ def cover(post,prefix,large=False):
     icon='▷' if post.get('video_url') else '↗'
     return f'<div class="blog-cover-art" aria-hidden="true"><span class="blog-art-label">SISKIYOU HR<br>SOLUTIONS</span><span class="blog-art-icon">{icon}</span><span class="blog-art-mountain"></span></div>'
 
+def keyword_tags(value):
+    if value is None: return []
+    if not isinstance(value,list) or any(not isinstance(tag,str) for tag in value):
+        raise ValueError('Keyword tags must be a list of text values')
+    result=[]; seen=set()
+    for tag in value:
+        tag=' '.join(tag.split())
+        if tag and tag.casefold() not in seen:
+            seen.add(tag.casefold()); result.append(tag)
+    return result
+
+def tag_links(post,prefix=''):
+    links=''.join(f'<li><a href="{prefix}SHR_Blog.html?q={text(quote(tag,safe=""))}#latest" aria-label="View posts tagged {text(tag)}">{text(tag)}</a></li>' for tag in post.get('tags',[]))
+    return f'<ul class="blog-tags" aria-label="Post keywords">{links}</ul>' if links else ''
+
+def search_text(post):
+    body=unescape(re.sub(r'<[^>]*>',' ',body_html(post.get('body',''),'')))
+    return ' '.join([post['title'],post['excerpt'],post['category'],post['author'],body,post.get('transcript','')]+post.get('tags',[]))
+
 def card(post):
     fmt='video' if post.get('video_url') else 'article'
     label='Watch & read' if fmt=='video' else 'Read article'
     meta=f'{post["display_date"]} · {"Video" if fmt=="video" else "Article"}'
-    return f'''<article class="blog-card" data-format="{fmt}" data-search="{text(post['title']+' '+post['excerpt']+' '+post['category'])}"><a class="blog-card-cover" href="blog/{post['slug']}/" tabindex="-1" aria-hidden="true">{cover(post,'')}</a><div class="blog-card-content"><p class="blog-eyebrow">{text(post['category'])}</p><h3><a href="blog/{post['slug']}/">{text(post['title'])}</a></h3><p class="blog-card-excerpt">{text(post['excerpt'])}</p><p class="blog-meta">{text(meta)}</p><a class="blog-read-link" href="blog/{post['slug']}/" aria-label="{label}: {text(post['title'])}">{label} <span aria-hidden="true">↗</span></a></div></article>'''
+    return f'''<article class="blog-card" data-format="{fmt}" data-search="{text(search_text(post))}"><a class="blog-card-cover" href="blog/{post['slug']}/" tabindex="-1" aria-hidden="true">{cover(post,'')}</a><div class="blog-card-content"><p class="blog-eyebrow">{text(post['category'])}</p><h3><a href="blog/{post['slug']}/">{text(post['title'])}</a></h3><p class="blog-card-excerpt">{text(post['excerpt'])}</p>{tag_links(post)}<p class="blog-meta">{text(meta)}</p><a class="blog-read-link" href="blog/{post['slug']}/" aria-label="{label}: {text(post['title'])}">{label} <span aria-hidden="true">↗</span></a></div></article>'''
 
 DEFAULT_SITE = {
     'site_url': 'https://www.siskiyouhr.com',
@@ -164,43 +183,12 @@ def load_site():
     if (parsed.scheme!='https' or not parsed.hostname or parsed.query or parsed.fragment or parsed.username or parsed.password
             or re.search(r'[\s\\]',site['site_url']) or '..' in PurePosixPath(unquote(parsed.path)).parts):
         raise ValueError('site_url must be the public HTTPS site URL, optionally with a repository path')
-    extra_meta_tags(site.get('meta_tags'))
     return site
 
 def absolute_url(value,site):
     value=local_url(value,'')
     if not urlparse(value).scheme: value=site['site_url']+'/'+value
     return quote(value,safe=":/?&=%#@+;,")
-
-# Built-in metadata stays controlled by its dedicated CMS fields.
-MANAGED_META = {
-    'description', 'robots', 'googlebot', 'bingbot', 'viewport', 'charset',
-    'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url', 'og:image', 'og:image:alt',
-    'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt',
-    'article:published_time', 'article:modified_time',
-}
-
-def extra_meta_tags(value):
-    if value is None: return []
-    if not isinstance(value,list): raise ValueError('Additional meta tags must be a list of rows')
-    result=[]; seen=set()
-    for index,entry in enumerate(value,1):
-        if not isinstance(entry,dict): raise ValueError(f'Meta tag row {index} must be an object')
-        attribute=entry.get('attribute') or 'name'
-        tag=entry.get('tag') or ''
-        content=entry.get('content') or ''
-        if not isinstance(tag,str) or not isinstance(content,str): raise ValueError(f'Meta tag row {index} must contain text')
-        tag=tag.strip()
-        if not tag and not content.strip(): continue
-        if attribute not in ('name','property'): raise ValueError(f'Meta tag row {index}: choose name or property')
-        if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_.:-]*',tag) or not content.strip():
-            raise ValueError(f'Meta tag row {index}: add a valid tag name and content')
-        if tag.lower() in MANAGED_META:
-            raise ValueError(f'Meta tag {tag} has a dedicated search/social field; use that field instead')
-        fingerprint=(attribute,tag.lower(),content)
-        if fingerprint not in seen:
-            seen.add(fingerprint); result.append((attribute,tag,content))
-    return result
 
 def seo_fields(post):
     value=post.get('seo') or {}
@@ -214,7 +202,6 @@ def seo_fields(post):
     if value.get('video_upload_date'):
         uploaded=datetime.fromisoformat(value['video_upload_date'].replace('Z','+00:00'))
         if uploaded.tzinfo is None: raise ValueError('Video upload date must include a timezone')
-    extra_meta_tags(value.get('meta_tags'))
     return value
 
 def metadata(site,path,post=None,demo=False):
@@ -261,7 +248,6 @@ def metadata(site,path,post=None,demo=False):
         # Escape '<' so editor-entered text cannot close the JSON-LD script element.
         encoded=json.dumps(schema,ensure_ascii=True).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
         head.append('<script type="application/ld+json">'+encoded+'</script>')
-    tags.extend(extra_meta_tags(seo.get('meta_tags') if post else site.get('meta_tags')))
     head.extend(f'<meta {attr}="{key}" content="{text(value)}">' for attr,key,value in tags)
     return title,description,'\n'.join(head)
 
@@ -311,6 +297,7 @@ def build(output, demo=False):
             if seo.get(key): absolute_url(seo[key],site)
         if post.get('video_url'): video_source(post['video_url'])
         if post.get('cover'): local_url(post['cover'],'')
+        post['tags']=keyword_tags(post.get('tags'))
         post['slug']=slug; post['display_date']=date_value.strftime('%B %d, %Y').replace(' 0',' ')
         posts.append(post)
     posts.sort(key=lambda p:(p['date'],p['slug']),reverse=True)
@@ -336,7 +323,7 @@ def build(output, demo=False):
     for post in posts:
         prefix='../../'
         values={k:text(post.get(k,'')) for k in ('category','excerpt','author')}
-        values.update(root=prefix,post_title=text(post['title']),date=text(post['display_date']),format='Video' if post.get('video_url') else 'Article',cover=f'<div class="blog-article-cover">{cover(post,prefix)}</div>' if post.get('cover') else '',video=video_html(post),body=body_html(post.get('body',''),prefix),transcript=f'<details class="blog-transcript"><summary>Read the video transcript</summary><div>{text(post["transcript"])}</div></details>' if post.get('transcript') else '')
+        values.update(tags=tag_links(post,prefix),root=prefix,post_title=text(post['title']),date=text(post['display_date']),format='Video' if post.get('video_url') else 'Article',cover=f'<div class="blog-article-cover">{cover(post,prefix)}</div>' if post.get('cover') else '',video=video_html(post),body=body_html(post.get('body',''),prefix),transcript=f'<details class="blog-transcript"><summary>Read the video transcript</summary><div>{text(post["transcript"])}</div></details>' if post.get('transcript') else '')
         seo=seo_fields(post)
         if seo.get('modified'):
             values['date']+=' · Updated '+text(date.fromisoformat(seo['modified']).strftime('%B %d, %Y').replace(' 0',' '))

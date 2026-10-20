@@ -11,5 +11,9 @@
   "transcript": "Replace this demonstration transcript with an accurate transcript of your own video before publishing.",
   "published": false,
   "cover": "",
-  "cover_alt": ""
+  "cover_alt": "",
+  "tags": [
+    "communication",
+    "leadership"
+  ]
 }
