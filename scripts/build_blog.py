@@ -140,8 +140,9 @@ def cover(post,prefix,large=False):
 
 def keyword_tags(value):
     if value is None: return []
+    if isinstance(value,str): value=value.split(',')
     if not isinstance(value,list) or any(not isinstance(tag,str) for tag in value):
-        raise ValueError('Keyword tags must be a list of text values')
+        raise ValueError('Keyword tags must be comma-separated text or a list of text values')
     result=[]; seen=set()
     for tag in value:
         tag=' '.join(tag.split())

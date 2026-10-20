@@ -212,8 +212,8 @@ repository, select main, and invite the marketing manager by email.
 
 KEYWORD TAGS AND BLOG SEARCH
 
-In Pages CMS, open a post and use Keyword tags to add one keyword or phrase per
-item. Examples: onboarding, leadership, employee retention. Save the post normally.
+In Pages CMS, open a post and use Keyword tags to enter keywords or phrases separated by
+commas. Example: onboarding, leadership, employee retention. Save the post normally.
 Tags appear as clickable chips on the post and its listing card. Clicking a tag
 opens blog search results for that keyword. Search also matches titles, summaries,
 topics, authors, article text, and video transcripts. Multiple words narrow results

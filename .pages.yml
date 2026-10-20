@@ -48,8 +48,7 @@ content:
       - name: tags
         label: Keyword tags
         type: string
-        list: true
-        description: Add one keyword or phrase per item, such as onboarding, leadership, or employee retention. Readers can click tags or search for them on the blog.
+        description: Separate keywords or phrases with commas, for example onboarding, leadership, employee retention. Readers can click tags or search for them on the blog.
       - name: excerpt
         label: Short summary for the blog listing
         type: text
