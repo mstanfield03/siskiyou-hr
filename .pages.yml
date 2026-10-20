@@ -18,6 +18,24 @@ content:
       fields: [title, date, published]
       sort: date
       order: desc
+    actions:
+      - name: generate-blog-cover
+        label: Generate cover image
+        scope: entry
+        workflow: generate-blog-cover.yml
+        ref: main
+        confirm:
+          title: Generate a branded cover?
+          message: Save your post first. Creates one image from the saved article using the Siskiyou illustration style and a paid image service. Reload the post when finished. Drafts stay unpublished; a published post's new cover goes live automatically.
+          button: Generate image
+        fields:
+          - name: focus
+            label: Visual focus (optional)
+            type: text
+          - name: replace_existing
+            label: Replace the current cover
+            type: checkbox
+            default: false
     fields:
       - name: title
         label: Post title
@@ -54,8 +72,9 @@ content:
         type: text
         required: true
       - name: cover
-        label: Cover image (optional)
+        label: Cover image (upload or generate)
         type: image
+        description: Upload your own image or select one from media. To generate a matching illustration, save the post, use Generate cover image in the top actions menu, then reload when it finishes. Generation never changes Published.
       - name: cover_alt
         label: Description of the cover image for accessibility
         type: string

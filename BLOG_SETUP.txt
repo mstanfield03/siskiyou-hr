@@ -224,3 +224,50 @@ the results further. Each individual post has a matching search bar that sends
 readers to the blog results. Query URLs can be bookmarked or shared. No additional
 service or account is required. Only published posts are indexed on the live site.
 The original search title, description, and social image SEO fields remain in place.
+
+GENERATE A BRANDED COVER OR UPLOAD YOUR OWN
+
+Editors:
+1. Save the post title, summary, and article text first.
+2. Open the post's actions menu in the top bar and choose Generate cover image.
+3. Optionally describe a visual focus, such as two people reviewing job duties.
+   The palette and illustration style stay fixed; no prompt writing is necessary.
+4. Click Generate image once and wait for the action to finish. Then reload the
+   editor to see the saved cover. Generation may take several minutes.
+5. Review the cover and its accessibility description. Publish when ready.
+
+You can always use Cover image > Upload or Select instead. An existing cover is
+protected unless Replace the current cover is checked in the generation dialog.
+Previous images stay in media, so you can select an earlier version again.
+Generation preserves Published: drafts stay unpublished; an already-published
+post's cover change is deployed automatically. Save or discard any unsaved edits
+before reloading. Generation uses the saved article, not unsaved editor text.
+
+Developer activation:
+- Add a repository Actions secret named OPENAI_API_KEY, using a project API key
+  with image generation access and API billing. Never put it in site files,
+  .pages.yml, the browser, or a post. ChatGPT subscriptions do not supply this key.
+- Secret settings: https://github.com/mstanfield03/siskiyou-hr/settings/secrets/actions
+- The Pages CMS GitHub connection must be allowed to dispatch Actions workflows.
+  If GitHub asks the owner to accept updated app permissions, the owner does so.
+- Test from a saved post with an empty cover. Inspect the action's result in CMS
+  or in GitHub Actions > Generate blog cover image. Reload to see the result.
+- Each confirmed run sends the saved article context and brand reference to
+  OpenAI, generating one 1536x1024 medium-quality WebP using gpt-image-2.
+  API charges apply. No automatic image-request retries or background generation.
+- scripts/brand/cover-style.txt and cover-reference.jpg define the approved
+  centered sage/ivory cut-paper style. Change them deliberately to alter the look.
+- The workflow saves the image and post together, changing only cover and
+  cover_alt. Concurrent edits to this post cause a safe stop instead of an
+  overwrite; unrelated repository changes are handled without another paid call.
+- Failed saves after generation retain a generated-cover artifact for 7 days in
+  the GitHub Actions run. Download it and upload it through CMS if needed.
+- A missing API key, billing/access failure, or timeout leaves the cover alone.
+  Read the workflow's summary. For timeout errors check API usage before retrying.
+- GITHUB_TOKEN writes do not trigger push workflows, so the generator explicitly
+  dispatches publish.yml after updating a published post. Drafts do not deploy.
+- Run checks: python -m unittest discover -s tests -p test_generate_blog_cover.py
+
+Configuration references:
+https://pagescms.org/docs/configuration/actions/
+https://developers.openai.com/api/reference/resources/images/methods/edit
