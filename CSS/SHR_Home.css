@@ -161,7 +161,7 @@ li {
 }
 
 .logo-wrap {
-  width: clamp(220px, 24vw, 400px);
+  width: clamp(220px, 28vw, 400px);
 
   display: flex;
   align-items: center;
@@ -196,7 +196,7 @@ li {
 
 .nav-links a:hover,
 .nav-links a:focus {
-  color: var(--accent);
+  color: var(--black);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -653,4 +653,11 @@ li {
     width: 100%;
     text-align: center;
   }
+}
+
+/* Match the other pages' compact mobile header spacing. */
+@media (max-width: 480px) {
+  .site-header { padding: 0.75rem; }
+  .nav-bar { padding: 0.75rem; }
+  .nav-links { gap: 0.85rem; }
 }
