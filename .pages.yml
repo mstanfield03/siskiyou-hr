@@ -1,0 +1,150 @@
+media:
+  input: Images/blog
+  output: /Images/blog
+  extensions: [jpg, jpeg, png, webp, gif]
+  rename: safe
+content:
+  - name: posts
+    label: Journal posts
+    type: collection
+    path: content/posts
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    subfolders: false
+    view:
+      primary: title
+      fields: [title, date, published]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Post title
+        type: string
+        required: true
+      - name: published
+        label: Published — turn on when ready to go live
+        type: boolean
+        default: false
+      - name: date
+        label: Display date (not a scheduled publish date)
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: author
+        label: Author
+        type: string
+        default: Siskiyou HR Solutions
+        required: true
+      - name: category
+        label: Topic
+        type: select
+        default: Workplace Practices
+        required: true
+        options:
+          values: [Workplace Practices, Leadership & Teams, HR Perspectives, Community]
+      - name: excerpt
+        label: Short summary for the blog listing
+        type: text
+        required: true
+      - name: cover
+        label: Cover image (optional)
+        type: image
+      - name: cover_alt
+        label: Description of the cover image for accessibility
+        type: string
+      - name: featured
+        label: Feature this post (newest featured post wins)
+        type: boolean
+        default: false
+      - name: body
+        label: Article text (optional for video-only posts)
+        type: rich-text
+        options:
+          format: html
+          switcher: false
+      - name: video_url
+        label: Video link — YouTube, Vimeo, or HTTPS MP4/WebM (optional)
+        type: string
+      - name: video_caption
+        label: Video caption (optional)
+        type: text
+      - name: transcript
+        label: Video transcript (optional)
+        type: text
+      - name: seo
+        label: Search & social settings (optional)
+        type: object
+        fields:
+          - name: title
+            label: Search title
+            type: string
+            description: Full browser/search title, including any brand name. Leave blank to use the post title plus Siskiyou HR Solutions. Keep it concise and descriptive.
+          - name: description
+            label: Search description
+            type: text
+            description: A unique, helpful summary. Leave blank to use the short summary above. Google may choose a different snippet.
+          - name: social_image
+            label: Social sharing image
+            type: image
+            description: Optional dedicated sharing image; otherwise uses the cover image, then the site default. A 1200 x 630 image is a useful starting point.
+          - name: social_image_alt
+            label: Social image description
+            type: string
+            description: Describe what the sharing image shows. If you choose a separate image, add a description for that image.
+          - name: modified
+            label: Last substantive update
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+            description: Set when you meaningfully update this article. Also displayed on the page. Leave blank for a new post.
+          - name: noindex
+            label: Keep this published post out of search engines
+            type: boolean
+            default: false
+            description: The post stays public and listed on the blog, but requests noindex and is omitted from the blog sitemap. This does not make it private.
+          - name: video_thumbnail
+            label: Video thumbnail for search (video posts only)
+            type: image
+            description: Use an actual representative thumbnail of this video. Video structured data needs both this image and the original upload date below.
+          - name: video_upload_date
+            label: Original video upload date (video posts only)
+            type: date
+            default: ""
+            options:
+              time: true
+              format: yyyy-MM-dd'T'HH:mmXXX
+            description: Actual date and time the video was first uploaded, with timezone. Leave blank if unknown; the video still plays.
+  - name: site_seo
+    label: Site SEO defaults
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: site_url
+        label: Public site URL
+        type: string
+        readonly: true
+        description: Configured by the developer. Must match the preferred HTTPS domain or GitHub Pages repository URL.
+      - name: site_name
+        label: Site name
+        type: string
+        readonly: true
+      - name: journal_title
+        label: Journal listing search title
+        type: string
+        required: true
+      - name: journal_description
+        label: Journal listing search description
+        type: text
+        required: true
+      - name: social_image
+        label: Default sharing image
+        type: image
+        description: Used when neither a post-specific sharing image nor a cover image is available.
+      - name: social_image_alt
+        label: Default sharing image description
+        type: string

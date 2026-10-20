@@ -1,0 +1,211 @@
+SISKIYOU HR SOLUTIONS — BLOG + PAGES CMS
+
+What this package provides
+A responsive SHR_Blog.html journal, individual article templates, optional video,
+a browser-based editor configuration, and a GitHub Pages publishing workflow.
+The header/footer markup and styling come from your supplied About page and its
+live stylesheet. Footer links were corrected to index.html / SHR_About.html so
+both custom domains and GitHub project URLs work. Existing pages are not edited.
+The blog uses the site's actual logo, mountain image, Montserrat, and sage palette.
+A small mobile-only rule lets the original header brand row shrink without
+horizontal scrolling; its layout and appearance remain the same.
+
+ONE-TIME SETUP FOR YOU
+
+1. Make a backup or branch of the client's existing repository. Add these folders
+   and files at the repository root (not inside a siskiyou-blog subfolder):
+     .pages.yml
+     .github/workflows/publish.yml
+     scripts/build_blog.py
+     templates/
+     content/posts/
+     content/site.json
+     JS/SHR_Blog.js
+     CSS/SHR_Blog.css
+     SHR_Blog.html
+   Retain your existing index.html, SHR_Services.html, SHR_About.html,
+   SHR_Contact.html, CSS, Images and other existing assets.
+   This package also contains the live CSS/SHR_About.css and three existing brand
+   images for preview. Keep your repository's current copies of those files if
+   they are newer. The preview/ and dist/ folders are local build outputs only;
+   do not add them to the repository. Merge the supplied .gitignore rules into
+   an existing .gitignore rather than replacing it.
+
+2. Add this link to the navigation/footer on your existing pages wherever you
+   want visitors to find the blog:
+     <a href="SHR_Blog.html">Journal</a>
+   The new page keeps the existing header/footer links and does not add an editor
+   login to the public site. The manager bookmarks https://app.pagescms.org/.
+
+3. In publish.yml, change branches: [main] if the repository uses another branch.
+   Use that same branch when opening the repository in Pages CMS.
+   If there is already a Pages deployment workflow, merge this build step into
+   it or replace it deliberately; do not leave two workflows deploying the site.
+
+4. In GitHub repository Settings > Pages > Build and deployment, choose GitHub
+   Actions as the source. Keep the existing custom domain and DNS settings.
+   Keep an existing CNAME file at the root; the builder copies it into dist.
+   If GitHub Actions is disabled by repository policy, enable it through the owner.
+   Push the changes, then verify a successful Publish website and journal run.
+
+5. Open https://app.pagescms.org/, sign in with your GitHub account, and install /
+   authorize the Pages CMS GitHub App for this repository. Select the repository
+   and the publishing branch. Its .pages.yml file defines the Journal posts form.
+   Use Pages CMS collaborator management to invite the marketing manager by email.
+   These account/repository connection steps have not been performed for you.
+
+6. Create one test post, turn Published on, and save. Verify the workflow completes,
+   SHR_Blog.html shows the post, and the article's video/images work on the live
+   domain. Then unpublish or delete the test post and verify the listing updates.
+   The provided demonstration posts are all drafts. Replace or delete them before
+   handoff. In particular the demo video is a film trailer, not client content.
+
+MANAGER'S WORKFLOW
+
+Open Pages CMS > the client repository > Journal posts > create a post.
+Enter the title, display date, author, topic and short summary. Add an optional
+cover image and describe it in the image description field. Write the article
+with the rich-text editor, or supply a video link, or use both.
+
+Video link accepts:
+  - YouTube watch, share, Shorts, or embed URLs
+  - Vimeo public links; unlisted links preserve their privacy hash
+  - Direct HTTPS MP4 or WebM file links
+Use a video host rather than uploading large video files into GitHub. Ensure
+embedding is enabled by the video owner. Add a caption and transcript when
+available; captions should also be provided in the video hosting platform.
+
+Leave Published off while drafting. Turn Published on and Save to put it live.
+Saving starts the deployment; allow it to finish before checking the website.
+Save later edits to update the article. Turn Published off and Save to remove it
+from the deployed journal. Deleted posts disappear on the next successful build.
+The date field is only the displayed/sorting date; it does not schedule publishing.
+Featured places a post in the lead section. If several are featured, newest wins.
+Each post may have one lead video and formatted text with images.
+
+The filename is the article's URL slug. Keep it lowercase with hyphens, e.g.
+welcome-to-the-team.json. Pages CMS creates it from the title. Avoid changing it
+after publishing, because changing the filename changes the article URL.
+
+HOW IT WORKS
+
+Pages CMS saves one JSON file per post in content/posts and images in Images/blog.
+The body field contains HTML produced by its visual editor; no coding is needed.
+A push to the publication branch runs scripts/build_blog.py through GitHub Actions.
+The builder fills templates, generates SHR_Blog.html and blog/<filename>/index.html,
+and copies the existing static site into dist. GitHub deploys dist to Pages.
+No database, Node installation or paid hosting service is required by the build.
+
+Draft content, templates, scripts, and the editor configuration are never copied
+into dist. Uploaded images in Images/blog ARE public assets when deployed, even
+when their associated post is a draft. A public GitHub repository also exposes
+its source drafts. This publishing switch controls the website, not repo privacy.
+
+The builder carries root .html/.css/.js/.ico/.xml/.webmanifest files, CNAME and
+robots.txt, and CSS, JS, Images, assets, fonts (case variants accepted), and
+.well-known folders. If your existing site uses other asset folders or root files,
+add them to the copy list in build_blog.py before switching deployment. Check all
+existing pages after the first build. Keep any existing form/provider integrations.
+GitHub Pages repository-path hosting is supported by relative generated links.
+Body image/link paths are interpreted from the site root, including /Images/blog.
+
+LOCAL PREVIEW (Python 3.11 or newer)
+
+From the repository root:
+  python3 scripts/build_blog.py --demo --output preview
+  python3 -m http.server 8765 --directory preview
+Then visit http://localhost:8765/SHR_Blog.html.
+--demo includes drafts solely for local demonstration. The workflow never uses it.
+
+Production build:
+  python3 scripts/build_blog.py
+This writes dist with ONLY posts whose published field is the boolean true.
+The supplied root SHR_Blog.html is the initial empty-state production page.
+Edit templates/listing.html, templates/article.html, and CSS/SHR_Blog.css to
+change layouts; the generated SHR_Blog.html is overwritten on each build.
+Use templates/header.html and footer.html if shared navigation later changes.
+
+VERIFICATION
+The local build and draft/publication behavior were exercised. Browser checks
+cover filtering, search, article layout, responsive widths and video UI. Live CMS
+sign-in, repo authorization, and a real GitHub deployment still require the
+repository connection and initial publishing test described above.
+
+Reference documentation
+  https://pagescms.org/docs/
+  https://pagescms.org/docs/configuration/collaborators/
+  https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+
+SEO CONTROLS — ADDED OCTOBER 15, 2026
+
+Each post now has a Search & social settings section in Pages CMS:
+  Search title: optional complete search/browser title.
+  Search description: optional summary for search results.
+  Social sharing image and its description: optional overrides.
+  Last substantive update: optional date; shown on the article too.
+  Keep out of search: requests noindex for a public post; it is NOT private.
+  Video thumbnail and original upload date: optional video search metadata.
+
+If search fields are blank, the build uses the post title and excerpt. The default
+search title adds the site name. An explicit Search title replaces the full title,
+so include branding yourself if wanted. Social images fall back to the post cover,
+then the site default. A 1200 x 630 image is a useful starting point for sharing.
+The visible article title remains the main post title.
+
+The filename still sets the URL. Use readable, stable filenames; renaming a post
+changes its address and does not create a redirect. Add genuine image descriptions,
+use meaningful subheadings, link to relevant services and other articles, and write
+for a specific audience question. Aim for clear titles and concise descriptions;
+character counts are guidance, not ranking requirements or hard Google limits.
+
+Automatic output on each build:
+  - Complete title and meta description in the generated HTML.
+  - Absolute canonical URL using content/site.json.
+  - Open Graph and Twitter sharing metadata.
+  - BlogPosting structured data with author and publication date; optional image
+    and last-update date. The author is an Organization when its name matches the
+    site name, otherwise a Person. Use accurate author names.
+  - VideoObject data only when a video has a supplied representative thumbnail
+    and original upload date/time. Unknown details are not invented.
+  - blog-sitemap.xml for the listing and published, indexable articles.
+  - A Sitemap line added to the deployed robots.txt, preserving existing crawl
+    directives and other sitemap lines. Your existing sitemap.xml is unchanged.
+  - Demo builds request noindex and have an empty blog sitemap.
+
+Developer setup: content/site.json defaults to https://www.siskiyouhr.com, the
+HTTPS host accessible during the original build. Verify it matches the actual
+preferred domain in your Pages settings before publishing. To use another domain
+or repository-based URL, edit site_url in that JSON file in the repository. It is
+read-only in Pages CMS to avoid accidental canonical changes. Keep the path for
+repository hosting, e.g. https://owner.github.io/repository-name.
+
+After deploying, submit https://www.siskiyouhr.com/blog-sitemap.xml in the client's
+Google Search Console property (or the equivalent URL on your preferred domain).
+Use URL Inspection on a real published post and Google's Rich Results Test for
+structured data. These account-based validation steps have NOT been performed.
+If existing robots directives block the blog, review them before expecting Google
+to read its metadata. Video search eligibility also depends on the actual video,
+thumbnail accessibility, embedding permissions, and Google's video guidelines.
+
+This provides editorial SEO controls and technical metadata, not a Yoast-style
+scoring dashboard, live search-result simulator, keyword research, or automated
+ranking improvements. Google can select different titles/snippets. Helpful content,
+relevant local topics, internal links, and measuring performance in Search Console
+remain part of the manager's work. No search ranking or rich result is guaranteed.
+
+SEO references
+  https://developers.google.com/search/docs/appearance/title-link
+  https://developers.google.com/search/docs/appearance/snippet
+  https://developers.google.com/search/docs/appearance/structured-data/article
+  https://developers.google.com/search/docs/appearance/structured-data/video
+
+REPOSITORY INTEGRATION
+
+The Journal navigation link is already added to all four existing pages and both
+blog templates in this integration. Existing footer destinations were corrected
+to the site's actual HTML pages. The build preserves the www.siskiyouhr.com CNAME.
+Pull requests run the build without deploying; only main deploys the site.
+
+GitHub setting still required: Settings > Pages > Source > GitHub Actions.
+Pages CMS connection still required: install/authorize its GitHub App for this
+repository, select main, and invite the marketing manager by email.
