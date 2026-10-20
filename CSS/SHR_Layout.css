@@ -21,3 +21,7 @@
 @media (max-width: 500px) {
   .site-content-width { width: calc(100% - 2rem); }
 }
+/* Match the blog's mobile navigation shrink behavior. */
+@media (max-width: 850px) {
+  .site-header .nav-brand { min-width: 0; }
+}
