@@ -207,9 +207,9 @@ li {
 
 .mountain_wrapper {
   width: calc(100% - 2rem);
-  min-height: 600px;
+  min-height: 540px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 4.5rem 2rem;
 
   display: flex;
   flex-direction: column;
@@ -586,7 +586,7 @@ li {
 
   .mountain_wrapper {
     width: calc(100% - 1rem);
-    min-height: 460px;
+    min-height: 540px;
     padding: 4rem 1.25rem;
     border-radius: 16px;
     background-position: center;
@@ -658,4 +658,9 @@ li {
     width: 100%;
     text-align: center;
   }
+}
+
+/* Keep the banner height in step with the blog on small phones. */
+@media (max-width: 500px) {
+  .mountain_wrapper { min-height: 460px; }
 }

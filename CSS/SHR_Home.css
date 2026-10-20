@@ -661,3 +661,6 @@ li {
   .nav-bar { padding: 0.75rem; }
   .nav-links { gap: 0.85rem; }
 }
+
+/* Give the Home hero call to action a little breathing room. */
+.shr_hero_wrapper > .nav-button { margin-top: 1.5rem; }
