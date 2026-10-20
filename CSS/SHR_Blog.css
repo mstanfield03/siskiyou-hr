@@ -12,7 +12,7 @@
 .blog-hero h1 { font-size:clamp(2.8rem,5.5vw,5rem); line-height:1.09; letter-spacing:-.055em; font-weight:600; }
 .blog-hero h3 { max-width:660px; font-size:1rem; line-height:1.75; margin:1.5rem 0 0; }
 .blog-hero-link { display:inline-flex; gap:1.5rem; align-items:center; margin-top:2rem; color:white; font-size:.8rem; text-decoration:none; border-bottom:1px solid #b0b8ad; padding-bottom:.55rem; }
-.blog-featured { display:grid; grid-template-columns:1fr 1.1fr; gap:0; border:1px solid var(--blog-line); border-radius:24px; overflow:hidden; margin:5rem 0 0; background:#f8faf8; }
+.blog-featured { display:grid; grid-template-columns:1fr 1.1fr; gap:0; border:1px solid var(--blog-line); border-radius:24px; overflow:hidden; margin:5rem 0 0; background:var(--white);  box-shadow:var(--shadow-soft); transition:box-shadow 0.25s ease; }
 .blog-featured-cover { display:block; min-height:350px; text-decoration:none; overflow:hidden; }
 .blog-featured-cover img { width:100%; height:100%; object-fit:cover; }
 .blog-featured-content { padding:3rem; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
@@ -36,7 +36,8 @@
 .blog-search input:focus { outline:none; }
 .blog-search:focus-within { outline:2px solid var(--blog-ink); outline-offset:3px; }
 .blog-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
-.blog-card { border:1px solid var(--blog-line); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; background:white; }
+.blog-card { border:1px solid var(--blog-line); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; background:var(--white);  box-shadow:var(--shadow-soft); transition:box-shadow 0.25s ease; }
+.blog-card:hover, .blog-featured:hover { box-shadow:var(--shadow-hover); }
 .blog-card-cover { display:block; aspect-ratio:1.55; overflow:hidden; text-decoration:none; }
 .blog-card-cover img { width:100%; height:100%; object-fit:cover; }
 .blog-card-content { padding:1.6rem; display:flex; flex-direction:column; align-items:flex-start; flex:1; }
@@ -55,10 +56,10 @@
 .blog-card:nth-child(2) .blog-art-mountain { background:#d3cdbb; }
 .blog-card:nth-child(3) .blog-cover-art { background:#e0e6e5; }
 .blog-card:nth-child(3) .blog-art-mountain { background:#b4c5bf; }
-.blog-no-results,.blog-empty { padding:3rem; border:1px solid var(--blog-line); border-radius:20px; background:var(--blog-paper); }
+.blog-no-results,.blog-empty { padding:3rem; border:1px solid var(--blog-line); border-radius:20px; background:var(--white);  box-shadow:var(--shadow-soft); }
 .blog-empty h3 { margin-top:0; }
 .blog-empty p { max-width:620px; color:var(--blog-muted); }
-.blog-cta { display:flex; align-items:center; justify-content:space-between; gap:3rem; background:var(--blog-paper); border:1px solid var(--blog-line); border-radius:24px; padding:3.25rem; margin-top:5rem; }
+.blog-cta { display:flex; align-items:center; justify-content:space-between; gap:3rem; background:var(--white); border:1px solid var(--blog-line); border-radius:24px; padding:3.25rem; margin-top:5rem;  box-shadow:var(--shadow-soft); }
 .blog-cta h2 { font-size:clamp(1.8rem,3vw,2.7rem); line-height:1.2; letter-spacing:-.04em; font-weight:600; margin:0 0 1rem; }
 .blog-cta p:not(.blog-eyebrow) { font-size:.9rem; color:var(--blog-muted); margin:0; }
 .blog-cta .nav-button { background:var(--blog-ink); padding:1rem 1.3rem; }
@@ -88,7 +89,7 @@
 .blog-transcript { padding:1.25rem 1.5rem; margin-top:2rem; border:1px solid var(--blog-line); border-radius:16px; }
 .blog-transcript summary { cursor:pointer; font-weight:600; }
 .blog-transcript div { margin-top:1rem; white-space:pre-wrap; line-height:1.8; }
-.blog-article-cta { max-width:850px; margin:4rem auto 0; padding:2rem; border-radius:20px; background:var(--blog-paper); }
+.blog-article-cta { max-width:850px; margin:4rem auto 0; padding:2rem; border-radius:20px; background:var(--white);  box-shadow:var(--shadow-soft); }
 .blog-article-cta h2 { font-size:1.5rem; line-height:1.3; margin:0; }
 .blog-article-cta p { color:var(--blog-muted); font-size:.9rem; }
 .blog-article-cta .nav-button { background:var(--blog-ink); }
